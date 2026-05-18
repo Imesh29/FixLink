@@ -6,7 +6,15 @@ export default async function HomePage({ searchParams }) {
   const params = await searchParams;
   const category = params?.category || "";
 
-  const jobs = await getJobs(category);
+  let jobs = [];
+
+  try {
+    const data = await getJobs(category);
+    jobs = Array.isArray(data) ? data : [];
+  } catch (error) {
+    console.error("Failed to load jobs:", error.message);
+    jobs = [];
+  }
 
   return (
     <div>
