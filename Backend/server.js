@@ -17,7 +17,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.json({ message: "FixLink API is running" });
 });
-app.use("/jobs", jobRoutes);
+app.use("/api/jobs", jobRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
